@@ -12,48 +12,48 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class carigambar extends AppCompatActivity {
-    private EditText txcari;
-    private Button bcari;
-    private ImageView imej;
-    private ProgressDialog progressDialog;
-    private String toinput;
+    private EditText cari;
+    private Button fb;
+    private ImageView image;
+    private ProgressDialog PD;
+    private String input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cari_gambar);
-        txcari = (EditText) findViewById(R.id.inputurl);
-        bcari = (Button) findViewById(R.id.button4);
-        imej = (ImageView) findViewById(R.id.imageView1);
-        //Inisialisasi semua komponen yang akan digunakan
+        setContentView(R.layout.activity_carigambar);
+        cari = (EditText) findViewById(R.id.linkinput);
+        fb = (Button) findViewById(R.id.findbutton);
+        image = (ImageView) findViewById(R.id.suspect);
+        //Inisiating component
     }
 
     public void cariGambar(View view) {
-        toinput = txcari.getText().toString();
-        //memastikan bahwa input sudah dimasukkan/tidak kosong, sehingga asynctask baru bisa dijalankan
-        if (toinput.isEmpty()) {
-            Toast.makeText(this, "Masukkan URL gambar terlebih dahulu", Toast.LENGTH_LONG).show();
+        input = cari.getText().toString();
+        //checking weather the edittext is filled
+        if (input.isEmpty()) {
+            Toast.makeText(this, "Please input the URL", Toast.LENGTH_LONG).show();
         } else {
-            new TemukanGambar().execute(toinput);
+            new Carisuspect().execute(input);
         }
     }
 
 
-    private class TemukanGambar extends AsyncTask<String, Void, Bitmap> {
+    private class Carisuspect extends AsyncTask<String, Void, Bitmap> {
 
         @Override
         protected void onPreExecute() {
-            //Seharusnya method ini ada untuk menampilkan progress
-            progressDialog = new ProgressDialog(CariGambar.this);
-            progressDialog.setTitle("Mencari Gambar");
-            progressDialog.setMessage("Sabar ya");
-            progressDialog.setIndeterminate(false);
-            progressDialog.show();
+            //to show the progress
+            PD = new ProgressDialog(carigambar.this);
+            PD.setTitle("Finding your picture");
+            PD.setMessage("Please hold a second");
+            PD.setIndeterminate(false);
+            PD.show();
         }
 
         @Override
         protected Bitmap doInBackground(String... urls) {
-            //Method ini ada untuk menemukan gambar di background
+            //to find the picture in background
             String imageURL = urls[0];
             Bitmap bimage = null;
             try {
@@ -66,15 +66,9 @@ public class carigambar extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            //Seharusnya method ini berguna, ya, bagi mengupdate gambar
-            imej.setImageBitmap(bitmap);
-            progressDialog.dismiss();
+            image.setImageBitmap(bitmap);
+            PD.dismiss();
         }
     }
 }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_carigambar);
-    }
-}
+

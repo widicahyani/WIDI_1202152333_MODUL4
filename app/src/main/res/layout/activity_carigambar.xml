@@ -20,21 +20,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/inputurl"
+        android:id="@+id/linkinput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="85dp"
         android:layout_marginStart="84dp"
         android:ems="10"
-        android:hint="Sila masukkan URL"
+        android:hint="Input the URL here"
         android:inputType="textPersonName"
-        android:onClick="cariGambar"
+        android:onClick="cari"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/findbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="145dp"
@@ -43,7 +43,7 @@
         android:text="Temukan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputurl" />
+        app:layout_constraintTop_toBottomOf="@+id/linkinput" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/suspect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
